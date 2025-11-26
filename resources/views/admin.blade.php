@@ -1,31 +1,45 @@
 @extends('layout')
 
+@section('title', 'Data Admin')
+
 @section('content')
-<div style="background:white; padding:20px; border-radius:10px; box-shadow:0 0 10px #ccc;">
+    <div class="page-header">
+        <h1>Data Admin</h1>
+        <p>Daftar admin yang terdaftar dalam sistem Cangkulin.</p>
+    </div>
 
-    <h2 style="color:#2e7d32; margin-bottom:20px;">Data Admin</h2>
+    <div class="card">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Nama Admin</th>
+                        <th>Email</th>
+                        <th>No HP</th>
+                        <th>Username</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($admin as $a)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $a->nama_admin }}</td>
+                            <td>{{ $a->email }}</td>
+                            <td>{{ $a->no_hp_admin }}</td>
+                            <td>{{ $a->username }}</td>
+                        </tr>
+                    @endforeach
 
-    <table width="100%" cellspacing="0" cellpadding="10"
-        style="border-collapse: collapse;">
-
-        <tr style="background:#a5d6a7; color:#1b5e20;">
-            <th style="border-bottom:2px solid #ccc;">No</th>
-            <th style="border-bottom:2px solid #ccc;">Nama Admin</th>
-            <th style="border-bottom:2px solid #ccc;">Email</th>
-            <th style="border-bottom:2px solid #ccc;">No HP</th>
-            <th style="border-bottom:2px solid #ccc;">Username</th>
-        </tr>
-
-        @foreach($admin as $a)
-        <tr style="background:#f1f8e9;">
-            <td>{{ $loop->iteration }}</td>
-            <td>{{ $a->nama_admin }}</td>
-            <td>{{ $a->email }}</td>
-            <td>{{ $a->no_hp_admin }}</td>
-            <td>{{ $a->username }}</td>
-        </tr>
-        @endforeach
-    </table>
-
-</div>
+                    @if($admin->isEmpty())
+                        <tr>
+                            <td colspan="5" style="text-align:center; color:#78909c; padding:14px;">
+                                Belum ada data admin.
+                            </td>
+                        </tr>
+                    @endif
+                </tbody>
+            </table>
+        </div>
+    </div>
 @endsection
