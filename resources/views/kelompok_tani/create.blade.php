@@ -7,9 +7,6 @@
     <form action="{{ route('kelompok.store') }}" method="POST">
         @csrf
 
-        <label>ID Kelompok Tani</label><br>
-        <input type="text" name="id_kelompoktani" required style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;"><br><br>
-
         <label>Nama Kelompok</label><br>
         <input type="text" name="nama_kelompoktani" required style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;"><br><br>
 

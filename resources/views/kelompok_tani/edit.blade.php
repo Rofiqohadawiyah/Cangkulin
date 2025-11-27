@@ -1,34 +1,104 @@
-@extends('layout')
+<?php
 
-@section('content')
-<h2>Edit Kelompok Tani</h2>
+namespace App\Http\Controllers;
 
-<div style="background:white; padding:20px; border-radius:6px; border:1px solid #c8e6c9; width:500px;">
-    <form action="{{ route('kelompok.update', $kelompok->id_kelompoktani) }}" method="POST">
-        @csrf
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
-        <label>Nama Kelompok</label><br>
-        <input type="text" name="nama_kelompoktani" value="{{ $kelompok->nama_kelompoktani }}" required style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;"><br><br>
+class KelompokTaniController extends Controller
+{
+    public function index()
+    {
+        $kelompok = DB::table('kelompok_tani')
+            ->join('alamat', 'kelompok_tani.id_alamat', '=', 'alamat.id_alamat')
+            ->select(
+                'kelompok_tani.*',
+                'alamat.desa',
+                'alamat.kecamatan',
+                'alamat.kabupaten'
+            )
+            ->get();
 
-        <label>Jumlah Anggota</label><br>
-        <input type="number" name="jumlah_kelompoktani" value="{{ $kelompok->jumlah_kelompoktani }}" required style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;"><br><br>
+        return view('kelompok_tani.index', compact('kelompok'));
+    }
 
-        <label>No HP</label><br>
-        <input type="text" name="no_hp_kelompoktani" value="{{ $kelompok->no_hp_kelompoktani }}" required style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;"><br><br>
+    public function create()
+    {
+        return view('kelompok_tani.create');
+    }
 
-        <label>Desa / Kecamatan / Kabupaten</label><br>
-        <input type="text" name="desa" value="{{ $kelompok->desa }}" required style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;"><br><br>
-        <input type="text" name="kecamatan" value="{{ $kelompok->kecamatan }}" required style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;"><br><br>
-        <input type="text" name="kabupaten" value="{{ $kelompok->kabupaten }}" required style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;"><br><br>
+    public function store(Request $request)
+    {
+        // 1. Insert alamat + ambil ID otomatis
+        $id_alamat = DB::table('alamat')->insertGetId([
+            'desa' => $request->desa,
+            'kecamatan' => $request->kecamatan,
+            'kabupaten' => $request->kabupaten,
+        ]);
 
-        <label>NIK</label><br>
-        <input type="text" name="nik" value="{{ $kelompok->nik }}" required style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;"><br><br>
+        // 2. Insert kelompok tani (ID otomatis, tidak perlu input)
+        DB::table('kelompok_tani')->insert([
+            'nama_kelompoktani' => $request->nama_kelompoktani,
+            'jumlah_kelompoktani' => $request->jumlah_kelompoktani,
+            'no_hp_kelompoktani' => $request->no_hp_kelompoktani,
+            'nik' => $request->nik,
+            'deskripsi_jalan' => $request->deskripsi_jalan,
+            'id_alamat' => $id_alamat,
+            'is_active' => 1,
+        ]);
 
-        <label>Deskripsi Jalan</label><br>
-        <textarea name="deskripsi_jalan" style="width:100%; padding:7px; border:1px solid #aaa; border-radius:4px;">{{ $kelompok->deskripsi_jalan }}</textarea><br><br>
+        return redirect()->route('kelompok.index')->with('success', 'Data berhasil ditambahkan!');
+    }
 
-        <button type="submit" style="background:#43a047; color:white; padding:8px 14px; border:none; border-radius:5px;">Update</button>
-        <a href="{{ route('kelompok.index') }}" style="margin-left:10px; color:#ef6c00; text-decoration:none;">Kembali</a>
-    </form>
-</div>
-@endsection
+    public function edit($id)
+    {
+        $kelompok = DB::table('kelompok_tani')
+            ->join('alamat', 'kelompok_tani.id_alamat', '=', 'alamat.id_alamat')
+            ->where('id_kelompoktani', $id)
+            ->select(
+                'kelompok_tani.*',
+                'alamat.desa',
+                'alamat.kecamatan',
+                'alamat.kabupaten',
+                'alamat.id_alamat'
+            )
+            ->first();
+
+        return view('kelompok_tani.edit', compact('kelompok'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $kelompok = DB::table('kelompok_tani')->where('id_kelompoktani', $id)->first();
+
+        // Update alamat
+        DB::table('alamat')->where('id_alamat', $kelompok->id_alamat)->update([
+            'desa' => $request->desa,
+            'kecamatan' => $request->kecamatan,
+            'kabupaten' => $request->kabupaten,
+        ]);
+
+        // Update kelompok tani
+        DB::table('kelompok_tani')->where('id_kelompoktani', $id)->update([
+            'nama_kelompoktani' => $request->nama_kelompoktani,
+            'jumlah_kelompoktani' => $request->jumlah_kelompoktani,
+            'no_hp_kelompoktani' => $request->no_hp_kelompoktani,
+            'nik' => $request->nik,
+            'deskripsi_jalan' => $request->deskripsi_jalan,
+        ]);
+
+        return redirect()->route('kelompok.index')->with('success', 'Data berhasil diperbarui!');
+    }
+
+    public function delete($id)
+    {
+        $kelompok = DB::table('kelompok_tani')->where('id_kelompoktani', $id)->first();
+
+        if ($kelompok) {
+            DB::table('alamat')->where('id_alamat', $kelompok->id_alamat)->delete();
+            DB::table('kelompok_tani')->where('id_kelompoktani', $id)->delete();
+        }
+
+        return redirect()->route('kelompok.index')->with('success', 'Data berhasil dihapus!');
+    }
+}
