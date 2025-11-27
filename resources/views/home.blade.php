@@ -25,6 +25,79 @@
 
     </section>
 
+    {{-- GALERI PEMINJAMAN --}}
+    <section class="section fade-section" id="galeri">
+        <h2>Galeri Peminjaman</h2>
+        <p class="section-sub">
+            Dokumentasi singkat peminjaman dan penggunaan alat oleh kelompok tani.
+        </p>
+
+        <div style="display:flex; flex-wrap:wrap; gap:18px; margin-top:24px; justify-content:center;">
+            <div style="width:260px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.08);">
+                <img src="/img/galeri1.png" style="width:100%; height:150px; object-fit:cover;" alt="Peminjaman alat">
+                <div style="padding:10px 12px; font-size:13px; color:#455a64;">
+                    Peminjaman alat oleh perwakilan kelompok tani sebelum masa tanam.
+                </div>
+            </div>
+
+            <div style="width:260px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.08);">
+                <img src="/img/galeri2.png" style="width:100%; height:150px; object-fit:cover;" alt="Pengecekan alat">
+                <div style="padding:10px 12px; font-size:13px; color:#455a64;">
+                    Pengecekan kondisi alat oleh admin sebelum diserahkan ke peminjam.
+                </div>
+            </div>
+
+            <div style="width:260px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.08);">
+                <img src="/img/galeri3.png" style="width:100%; height:150px; object-fit:cover;" alt="Penggunaan alat">
+                <div style="padding:10px 12px; font-size:13px; color:#455a64;">
+                    Penggunaan alat untuk kegiatan kerja bakti di lahan pertanian.
+                </div>
+            </div>
+
+            <div style="width:260px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.08);">
+                <img src="/img/galeri4.png" style="width:100%; height:150px; object-fit:cover;" alt="Penggunaan alat">
+                <div style="padding:10px 12px; font-size:13px; color:#455a64;">
+                    Peminjaman alat oleh perwakilan kelompok tani sebelum masa tanam.
+                </div>
+            </div>
+
+            <div style="width:260px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.08);">
+                <img src="/img/galeri5.png" style="width:100%; height:150px; object-fit:cover;" alt="Penggunaan alat">
+                <div style="padding:10px 12px; font-size:13px; color:#455a64;">
+                    Pengecekan kondisi alat oleh admin sebelum diserahkan ke peminjam.
+                </div>
+            </div>
+
+            <div style="width:260px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.08);">
+                <img src="/img/galeri6.png" style="width:100%; height:150px; object-fit:cover;" alt="Penggunaan alat">
+                <div style="padding:10px 12px; font-size:13px; color:#455a64;">
+                    Penggunaan alat untuk kegiatan kerja bakti di lahan pertanian.
+                </div>
+            </div>
+
+            <div style="width:260px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.08);">
+                <img src="/img/galeri7.png" style="width:100%; height:150px; object-fit:cover;" alt="Penggunaan alat">
+                <div style="padding:10px 12px; font-size:13px; color:#455a64;">
+                    Dokumentasi singkat kegiatan peminjaman dan penggunaan alat oleh kelompok tani.
+                </div>
+            </div>
+
+            <div style="width:260px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.08);">
+                <img src="/img/galeri8.png" style="width:100%; height:150px; object-fit:cover;" alt="Penggunaan alat">
+                <div style="padding:10px 12px; font-size:13px; color:#455a64;">
+                    Dokumentasi singkat kegiatan peminjaman dan penggunaan alat oleh kelompok tani.
+                </div>
+            </div>
+
+            <div style="width:260px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 3px 10px rgba(0,0,0,.08);">
+                <img src="/img/galeri9.png" style="width:100%; height:150px; object-fit:cover;" alt="Penggunaan alat">
+                <div style="padding:10px 12px; font-size:13px; color:#455a64;">
+                    Penggunaan salah satu mesin yang di pinjamkan kepada salah satu kelompok tani.
+                </div>
+            </div>
+        </div>
+    </section>
+
     {{-- FITUR --}}
     <section class="section fade-section">
         <h2>Kenapa Menggunakan Cangkullin?</h2>

@@ -22,7 +22,6 @@
     display: flex;
     align-items: center;
 }
-        /* NAVBAR */
         .navbar {
             background:#2e7d32;
             padding:14px 40px;
@@ -57,7 +56,6 @@
             color:#ffebc8;
         }
 
-        /* HERO SLIDER */
         .hero {
             position: relative;
             height: 85vh;
@@ -131,7 +129,6 @@
             transform: translateY(-2px);
         }
 
-        /* SECTION WRAPPER */
         .section {
             padding:50px 40px;
             max-width:1100px;
@@ -149,7 +146,6 @@
             color:#607d8b;
         }
 
-        /* FEATURES */
         .feature-grid {
             display:flex;
             flex-wrap:wrap;
@@ -175,7 +171,6 @@
             color:#607d8b;
         }
 
-        /* ALAT */
         .alat-grid {
             display:flex;
             flex-wrap:wrap;
@@ -265,7 +260,6 @@
         <div class="menu">
             <a href="{{ url('/') }}">Beranda</a>
             <a href="#alat">Alat</a>
-            <a href="#tentang">Tentang</a>
             <a href="#galeri">Galeri</a>
             <a href="{{ route('login') }}">Login</a>
             <a href="{{ route('register') }}">Register</a>
@@ -289,7 +283,6 @@
                 }, 6000);
             }
 
-            // ANIMASI SCROLL
             const faders = document.querySelectorAll('.fade-section');
             const observer = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {

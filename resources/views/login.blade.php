@@ -1,153 +1,155 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Login - Cangkulin</title>
-    <style>
-        * { box-sizing: border-box; }
+@extends('layouts.front')
 
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-            margin: 0;
-            padding: 0;
-        }
+@section('title', 'Login')
 
-        .navbar {
-            background: #2e7d32;
-            padding: 14px;
-            color: white;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            letter-spacing: 1px;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-        }
+{{-- CSS KHUSUS HALAMAN LOGIN --}}
+@section('head')
+<style>
+    .auth-bg {
+        position: relative;
+        min-height: calc(100vh - 60px); /* tinggi layar dikurangi tinggi navbar kira-kira */
+        background: url('{{ asset("img/hero4.png") }}') center/cover no-repeat;
+    }
 
-        .auth-wrapper {
-            min-height: calc(100vh - 52px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
+    .auth-bg::before {
+        content:"";
+        position: absolute;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        backdrop-filter: blur(1px);
+        z-index: 0; /* di belakang card */
+    }
 
-        .container {
-            width: 360px;
-            background: white;
-            padding: 25px 24px 22px;
-            border-radius: 12px;
-            border: 1px solid #c8e6c9;
-            box-shadow: 0 4px 18px rgba(0,0,0,0.12);
-        }
+    .auth-wrapper {
+        position: relative;
+        z-index: 1;
+        min-height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 25px;
+    }
 
-        .container h2 {
-            text-align: center;
-            margin-top: 0;
-            margin-bottom: 4px;
-        }
+    .login-card {
+        width: 380px;
+        background: rgba(255, 255, 255, 0.92);
+        padding: 30px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+        backdrop-filter: blur(4px);
+    }
 
-        .container p.subtitle {
-            text-align: center;
-            font-size: 12px;
-            color: #78909c;
-            margin-top: 0;
-            margin-bottom: 18px;
-        }
+    .login-card img.logo {
+        width: 90px;
+        margin-bottom: 10px;
+    }
 
-        label {
-            font-size: 13px;
-            display: block;
-            margin-top: 10px;
-            color: #455a64;
-        }
+    .login-card h2 {
+        font-weight: 600;
+        margin-bottom: 5px;
+        color: #2e7d32;
+    }
 
-        input {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 6px;
-            border: 1px solid #b0bec5;
-            font-size: 13px;
-        }
+    .subtitle {
+        font-size: 13px;
+        color: #546e7a;
+        margin-bottom: 18px;
+    }
 
-        input:focus {
-            outline: none;
-            border-color: #43a047;
-            box-shadow: 0 0 0 2px rgba(67,160,71,0.15);
-        }
+    .login-card label {
+        text-align: left;
+        display: block;
+        color: #37474f;
+        font-size: 14px;
+        margin-top: 12px;
+    }
 
-        button {
-            margin-top: 18px;
-            width: 100%;
-            padding: 10px;
-            background: #43a047;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: bold;
-            cursor: pointer;
-        }
+    .login-card input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 8px;
+        border: 1px solid #b0bec5;
+        font-size: 14px;
+    }
 
-        button:hover {
-            background: #2e7d32;
-        }
+    .login-card input:focus {
+        outline: none;
+        border-color: #43a047;
+        box-shadow: 0 0 0 3px rgba(67,160,71,0.25);
+    }
 
-        .bottom-text {
-            text-align: center;
-            margin-top: 12px;
-            font-size: 12px;
-            color: #607d8b;
-        }
+    .login-card button {
+        width: 100%;
+        padding: 11px;
+        margin-top: 20px;
+        background: #43a047;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.25s;
+    }
 
-        .bottom-text a {
-            color: #ef6c00;
-            text-decoration: none;
-            font-weight: bold;
-        }
+    .login-card button:hover {
+        background: #2e7d32;
+    }
 
-        .bottom-text a:hover {
-            text-decoration: underline;
-        }
+    .bottom-text {
+        margin-top: 15px;
+        font-size: 13px;
+        color: #37474f;
+    }
 
-        .error-message {
-            margin-top: 8px;
-            font-size: 12px;
-            color: #c62828;
-        }
-    </style>
-</head>
-<body>
+    .bottom-text a {
+        color: #ff9800;
+        font-weight: bold;
+        text-decoration: none;
+    }
 
-<div class="navbar">CANGKULIN</div>
+    .error-message {
+        margin-top: 10px;
+        font-size: 13px;
+        color: #c62828;
+        font-weight: bold;
+    }
+</style>
+@endsection
 
-<div class="auth-wrapper">
-    <div class="container">
-        <h2>Login</h2>
-        <p class="subtitle">Masuk sebagai admin untuk mengelola data Cangkulin.</p>
+{{-- KONTEN LOGIN --}}
+@section('content')
+<div class="auth-bg">
+    <div class="auth-wrapper">
+        <div class="login-card">
+            <img src="{{ asset('img/logo.png') }}" class="logo" alt="Logo Cangkulin">
 
-        {{-- kalau mau tampilkan error dari session --}}
-        @if(session('error'))
-            <div class="error-message">{{ session('error') }}</div>
-        @endif
+            <h2>Login</h2>
+            <p class="subtitle">Masuk sebagai admin untuk mengelola data Cangkullin.</p>
 
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-            <label>Username</label>
-            <input type="text" name="username" required>
+            @if(session('error'))
+                <div class="error-message">{{ session('error') }}</div>
+            @endif
 
-            <label>Password</label>
-            <input type="password" name="password" required>
+            <form method="POST" action="{{ route('login') }}">
+                @csrf
 
-            <button type="submit">Masuk</button>
+                <label>Username</label>
+                <input type="text" name="username" required>
 
-            <p class="bottom-text">
-                Belum punya akun? <a href="{{ route('register') }}">Daftar</a>
-            </p>
-        </form>
+                <label>Password</label>
+                <input type="password" name="password" required>
+
+                <button type="submit">Masuk</button>
+
+                <p class="bottom-text">
+                    Belum punya akun?
+                    <a href="{{ route('register') }}">Daftar</a>
+                </p>
+            </form>
+        </div>
     </div>
 </div>
-
-</body>
-</html>
+@endsection
