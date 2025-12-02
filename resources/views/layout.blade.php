@@ -180,9 +180,9 @@
             <a href="{{ route('dashboard') }}">Dashboard</a>
             <a href="{{ route('admin') }}">Admin</a>
             <a href="{{ route('kelompok.index') }}">Kelompok Tani</a>
-            <a href="#">Alat Pertanian</a>
-            <a href="#">Peminjaman</a>
-            <a href="#">Pengembalian</a>
+            <a href="{{ route('alat.index') }}">Alat Pertanian</a>
+            <a href="{{ route('peminjaman.index') }}">Peminjaman</a>
+            <a href="{{ route('pengembalian.index')}}">Pengembalian</a>
             <a href="#">Laporan</a>
             <a href="#">Riwayat</a>
             <a href="{{ route('logout') }}" class="btn-red">Logout</a>

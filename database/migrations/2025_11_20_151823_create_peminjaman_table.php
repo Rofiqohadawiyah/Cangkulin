@@ -10,14 +10,16 @@ return new class extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id('id_pinjam');
-            $table->date('tanggal_pinjam');
-            $table->date('tanggal_kembali')->nullable();
 
+            // tanggal pinjam & deadline
+            $table->date('tanggal_pinjam');
+            $table->date('tenggat_pinjam')->nullable();
+
+            // RELASI
             $table->unsignedBigInteger('id_kelompoktani');
             $table->unsignedBigInteger('id_admin');
             $table->unsignedBigInteger('id_status');
 
-            $table->date('tenggat_pinjam')->nullable();
             $table->timestamps();
 
             // FOREIGN KEY

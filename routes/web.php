@@ -1,10 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\AlatPertanian;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KelompokTaniController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\HomeController; // ← baru
+use App\Http\Controllers\AlatPertanianController;
+use App\Http\Controllers\PeminjamanController;
+use App\Http\Controllers\PengembalianController;
 
 // HALAMAN UTAMA (PUBLIC) - tanpa middleware
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -19,12 +23,21 @@ Route::post('/register', [AuthController::class, 'register']);
 
 // DASHBOARD (ADMIN)
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    $alat = AlatPertanian::all();   // <- ambil semua data alat dari database
+
+    return view('dashboard', compact('alat')); // <- kirim ke blade
 })->middleware('authSession')->name('dashboard');
+
 
 // ADMIN
 Route::middleware('authSession')->group(function () {
    Route::get('/admin', [AdminController::class, 'index'])->name('admin');
+   Route::get('/alat', [AlatPertanianController::class, 'index'])->name('alat.index');
+    Route::get('/alat/create', [AlatPertanianController::class, 'create'])->name('alat.create');
+    Route::post('/alat', [AlatPertanianController::class, 'store'])->name('alat.store');
+    Route::get('/alat/{id}/edit', [AlatPertanianController::class, 'edit'])->name('alat.edit');
+    Route::post('/alat/{id}/edit', [AlatPertanianController::class, 'update'])->name('alat.update');
+    Route::get('/alat/{id}/delete', [AlatPertanianController::class, 'destroy'])->name('alat.delete');
 });
 
 // KELOMPOK TANI CRUD
@@ -39,6 +52,26 @@ Route::middleware('authSession')->group(function () {
     Route::post('/kelompok_tani/edit/{id}', [KelompokTaniController::class, 'update'])->name('kelompok.update');
 
     Route::get('/kelompok_tani/delete/{id}', [KelompokTaniController::class, 'delete'])->name('kelompok.delete');
+});
+
+//Peminjaman
+Route::middleware('authSession')->group(function () {
+
+Route::get('/peminjaman', [PeminjamanController::class, 'index'])->name('peminjaman.index');
+Route::get('/peminjaman/create', [PeminjamanController::class, 'create'])->name('peminjaman.create');
+Route::post('/peminjaman', [PeminjamanController::class, 'store'])->name('peminjaman.store');
+
+});
+
+//pengembalian
+Route::middleware(['authSession'])->group(function () {
+  Route::get('/pengembalian', [PengembalianController::class, 'index'])->name('pengembalian.index');
+  Route::post('/pengembalian/kembalikan', [PengembalianController::class, 'kembalikan'])->name('pengembalian.kembalikan');
+Route::put('/pengembalian/{id}/update-status', [PengembalianController::class, 'updateStatus'])
+    ->name('pengembalian.updateStatus');
+
+  Route::put('/pengembalian/{id}/perlu-pengingat', [PengembalianController::class, 'perluPengingat'])
+        ->name('pengembalian.perluPengingat');
 });
 
 // LOGOUT
