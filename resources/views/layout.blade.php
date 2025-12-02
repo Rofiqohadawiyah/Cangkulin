@@ -15,151 +15,81 @@
             color: #1b5e20;
         }
 
+        /* === NAVBAR === */
         .navbar {
             background: #2e7d32;
-            padding: 12px 32px;
+            padding: 14px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            color: white;
             position: sticky;
             top: 0;
             z-index: 10;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
-        .navbar .brand {
+        /* === KIRI: LOGO + TEKS === */
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: auto;
+        }
+
+        .logo {
             font-size: 22px;
             font-weight: bold;
-            letter-spacing: 1px;
+            color: white;
         }
 
-        .navbar .brand span {
-            font-size: 14px;
-            font-weight: normal;
-            opacity: 0.85;
+        .logo span {
+            font-size: 11px;
             display: block;
+            opacity: 0.8;
         }
 
-        .navbar .menu {
+        /* === MENU === */
+        .menu {
             display: flex;
-            gap: 18px;
             align-items: center;
+            gap: 18px;
         }
 
-        .navbar .menu a {
+        .menu a {
             color: white;
             text-decoration: none;
-            font-size: 14px;
             font-weight: 600;
-            padding: 6px 10px;
-            border-radius: 999px;
-            transition: background 0.2s, color 0.2s, transform 0.1s;
+            font-size: 14px;
+            transition: 0.2s;
         }
 
-        .navbar .menu a:hover {
-            background: #388e3c;
+        .menu a:hover {
             color: #ffebc8;
-            transform: translateY(-1px);
         }
 
-        .navbar .menu .btn-red {
-            background: #c62828;
+        /* === TOMBOL LOGOUT === */
+        .btn-red {
+            background: #43a047;
+            color: white !important;
+            padding: 6px 14px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: 0.2s;
         }
 
-        .navbar .menu .btn-red:hover {
-            background: #b71c1c;
+        .btn-red:hover {
+            background: #43a047;
         }
 
+        /* === KONTEN UTAMA === */
         .page-wrapper {
             max-width: 1100px;
             margin: 24px auto 40px;
             padding: 0 20px;
-        }
-
-        .page-header {
-            margin-bottom: 18px;
-        }
-
-        .page-header h1 {
-            margin: 0;
-            font-size: 24px;
-            color: #1b5e20;
-        }
-
-        .page-header p {
-            margin-top: 6px;
-            font-size: 13px;
-            color: #607d8b;
-        }
-
-        .card {
-            background: white;
-            padding: 20px 22px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-            border: 1px solid #c8e6c9;
-        }
-
-        .table-wrapper {
-            overflow-x: auto;
-            margin-top: 10px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 14px;
-        }
-
-        table thead {
-            background: #2e7d32;
-            color: white;
-        }
-
-        table th,
-        table td {
-            padding: 10px 12px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        table tr:nth-child(even) {
-            background: #f9fff9;
-        }
-
-        table tr:hover {
-            background: #f1f8e9;
-        }
-
-        .badge {
-            display: inline-block;
-            padding: 3px 8px;
-            font-size: 11px;
-            border-radius: 999px;
-        }
-
-        .badge-green {
-            background: #c8e6c9;
-            color: #1b5e20;
-        }
-
-        .btn {
-            padding: 7px 12px;
-            border-radius: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 13px;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .btn-green { background:#2e7d32; color:white; }
-        .btn-orange { background:#ef6c00; color:white; }
-        .btn-red-solid { background:#c62828; color:white; }
-
-        .btn:hover {
-            opacity: 0.9;
         }
 
         footer {
@@ -168,14 +98,34 @@
             color: #78909c;
             padding: 12px 0 18px;
         }
+
+        /* === RESPONSIVE === */
+        @media (max-width: 900px) {
+            .navbar {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 14px 24px;
+                gap: 8px;
+            }
+
+            .menu {
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 12px;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="navbar">
-        <div class="brand">
-            CANGKULIN
-            <span>Sistem Peminjaman Alat Pertanian</span>
+        <div class="navbar-left">
+            <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo-img">
+            <div class="logo">
+                CANGKULIN
+                <span>Sistem Peminjaman Alat Pertanian</span>
+            </div>
         </div>
+
         <div class="menu">
             <a href="{{ route('dashboard') }}">Dashboard</a>
             <a href="{{ route('admin') }}">Admin</a>
@@ -194,7 +144,7 @@
     </div>
 
     <footer>
-        &copy; {{ date('Y') }} Cangkulin · Membantu pencatatan peminjaman dan pengembalian alat
+        &copy; {{ date('Y') }} Cangkulin · Sistem Peminjaman dan Pengembalian Alat Pertanian
     </footer>
 </body>
 </html>

@@ -74,9 +74,11 @@ class AuthController extends Controller
         return redirect('/login')->with('success', 'Register berhasil. Silakan login.');
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        session()->flush();
-        return redirect('/login');
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect()->route('home'); // langsung ke halaman beranda user
     }
 }
