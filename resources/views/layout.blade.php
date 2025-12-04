@@ -15,7 +15,6 @@
             color: #1b5e20;
         }
 
-        /* === NAVBAR === */
         .navbar {
             background: #2e7d32;
             padding: 14px 40px;
@@ -28,7 +27,6 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         }
 
-        /* === KIRI: LOGO + TEKS === */
         .navbar-left {
             display: flex;
             align-items: center;
@@ -52,7 +50,6 @@
             opacity: 0.8;
         }
 
-        /* === MENU === */
         .menu {
             display: flex;
             align-items: center;
@@ -71,7 +68,6 @@
             color: #ffebc8;
         }
 
-        /* === TOMBOL LOGOUT === */
         .btn-red {
             background: #43a047;
             color: white !important;
@@ -85,7 +81,6 @@
             background: #43a047;
         }
 
-        /* === KONTEN UTAMA === */
         .page-wrapper {
             max-width: 1100px;
             margin: 24px auto 40px;
@@ -99,7 +94,6 @@
             padding: 12px 0 18px;
         }
 
-        /* === RESPONSIVE === */
         @media (max-width: 900px) {
             .navbar {
                 flex-direction: column;

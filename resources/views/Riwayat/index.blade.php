@@ -12,7 +12,6 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* WRAPPER */
     .riwayat-bg {
         max-width: 1200px;
         margin: 40px auto;
@@ -22,7 +21,6 @@
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
 
-    /* HEADER + FILTER */
     .header-row {
         display: flex;
         justify-content: space-between;
@@ -45,7 +43,6 @@
         margin-top: 4px;
     }
 
-    /* FILTER MIRIP PENGEMBALIAN */
     .filter-box {
         display: flex;
         gap: 10px;
@@ -84,7 +81,6 @@
         background: #256427;
     }
 
-    /* TABEL */
     table {
         width: 100%;
         border-collapse: collapse;
@@ -141,8 +137,6 @@
 </style>
 
 <div class="riwayat-bg">
-
-    {{-- HEADER + FILTER (kanan) --}}
     <div class="header-row">
         <div>
             <h2 class="riwayat-title">Riwayat</h2>
@@ -156,7 +150,6 @@
         </form>
     </div>
 
-    {{-- TABLE --}}
     <div style="overflow-x:auto;">
         <table>
             <thead>

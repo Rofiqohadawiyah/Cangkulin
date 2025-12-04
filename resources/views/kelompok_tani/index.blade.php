@@ -3,7 +3,6 @@
 @section('content')
 
 <style>
-    /* === BACKGROUND & GLOBAL RESET === */
     body {
         margin: 0;
         padding: 0;
@@ -14,7 +13,6 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* === WRAPPER KONTEN UTAMA === */
     .page-wrapper {
         max-width: 1200px;
         margin: 40px auto;
@@ -24,7 +22,6 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    /* === HEADER (judul dan tombol tambah) === */
     .page-header {
         display: flex;
         justify-content: space-between;
@@ -45,7 +42,6 @@
         margin-top: 4px;
     }
 
-    /* === TOMBOL TAMBAH === */
     .btn-add {
         background: #2e7d32;
         color: white;
@@ -61,7 +57,6 @@
         background: #256427;
     }
 
-    /* === TABEL === */
     table {
         width: 100%;
         border-collapse: collapse;
@@ -95,7 +90,6 @@
         transition: 0.2s;
     }
 
-    /* === TOMBOL AKSI === */
     .aksi-container {
         display: flex;
         gap: 8px;
@@ -129,7 +123,6 @@
         background: #c62828;
     }
 
-    /* === RESPONSIVE === */
     @media (max-width: 992px) {
         .page-wrapper {
             margin: 20px;
@@ -155,7 +148,6 @@
         <a href="{{ route('kelompok.create') }}" class="btn-add">+ Tambah Kelompok</a>
     </div>
 
-    {{-- TABEL DATA --}}
     <table>
         <thead>
             <tr>

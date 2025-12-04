@@ -12,17 +12,15 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* === WRAPPER BESAR === */
     .page-wrapper {
         max-width: 1200px;
         margin: 40px auto;
-        background: #eaf5ea; /* sedikit lebih lembut */
+        background: #eaf5ea;
         border-radius: 12px;
         padding: 28px;
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     }
 
-    /* === HEADER === */
     .page-header {
         display: flex;
         justify-content: space-between;
@@ -43,7 +41,6 @@
         margin-top: 4px;
     }
 
-    /* === BUTTON TAMBAH (sama seperti kelompok tani) === */
     .btn-add {
         background: #2e7d32;
         color: #fff;
@@ -60,7 +57,6 @@
         background: #256427;
     }
 
-    /* === TABEL === */
     table {
         width: 100%;
         border-collapse: collapse;
@@ -88,7 +84,6 @@
         background: #ffffff;
     }
 
-    /* === ZEBRA STRIPING === */
     tbody tr:nth-child(even) {
         background-color: #f9fff5; /* krem muda */
     }
@@ -97,7 +92,6 @@
         background-color: #f1f8f4;
     }
 
-    /* === STATUS BADGE === */
     .status {
         display: inline-block;
         padding: 6px 12px;
@@ -107,9 +101,9 @@
         color: white;
     }
 
-    .status-1 { background: #43a047; } /* Dipinjam */
-    .status-2 { background: #fbc02d; } /* Perlu Pengingat */
-    .status-3 { background: #9e9e9e; } /* Dikembalikan */
+    .status-1 { background: #43a047; }
+    .status-2 { background: #fbc02d; }
+    .status-3 { background: #9e9e9e; }
 
     .empty {
         text-align: center;
@@ -127,7 +121,6 @@
     }
 </style>
 
-    {{-- HEADER --}}
     <div class="page-header">
         <div>
             <h2 class="page-title">Data Peminjaman</h2>
@@ -136,14 +129,12 @@
         <a href="{{ route('peminjaman.create') }}" class="btn-add">+ Tambah Peminjaman</a>
     </div>
 
-    {{-- ALERT SUCCESS --}}
     @if(session('success'))
         <div style="background:#e8f5e9; color:#2e7d32; padding:8px 12px; border-radius:6px; margin-bottom:15px; font-size:14px;">
             {{ session('success') }}
         </div>
     @endif
 
-    {{-- TABEL --}}
     <div style="overflow-x:auto;">
         <table>
             <thead>

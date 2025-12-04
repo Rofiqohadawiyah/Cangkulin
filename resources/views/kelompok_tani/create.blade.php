@@ -86,7 +86,6 @@
         border: 1px solid #ffcdd2;
     }
 
-    /* BOTTON STYLE */
     .btn-submit {
         width: 100%;
         padding: 12px;
@@ -131,7 +130,6 @@
     <h2>Tambah Kelompok Tani</h2>
     <p class="description">Lengkapi data kelompok tani.</p>
 
-    {{-- ALERT ERROR --}}
     @if ($errors->any())
         <div class="alert-error">
             <strong>Periksa kembali input Anda:</strong>

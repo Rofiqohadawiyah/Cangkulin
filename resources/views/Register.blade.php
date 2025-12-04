@@ -5,10 +5,9 @@
 {{-- CSS khusus halaman register --}}
 @section('head')
 <style>
-    /* BACKGROUND + OVERLAY, TIDAK MENGGANGGU NAVBAR */
     .auth-bg {
         position: relative;
-        min-height: calc(100vh - 60px); /* tinggi layar dikurangi tinggi navbar */
+        min-height: calc(100vh - 60px);
         background: url('{{ asset("img/hero5.png") }}') center/cover no-repeat;
     }
 
@@ -18,10 +17,9 @@
         inset: 0;
         background: rgba(0, 0, 0, 0.45);
         backdrop-filter: blur(1px);
-        z-index: 0; /* di belakang card */
+        z-index: 0;
     }
 
-    /* WRAPPER CARD */
     .auth-wrapper {
         position: relative;
         z-index: 1;
@@ -32,7 +30,6 @@
         padding: 25px;
     }
 
-    /* CARD REGISTER */
     .register-card {
         width: 390px;
         background: rgba(255, 255, 255, 0.92);
@@ -129,29 +126,24 @@
 </style>
 @endsection
 
-{{-- KONTEN REGISTER --}}
 @section('content')
 <div class="auth-bg">
     <div class="auth-wrapper">
         <div class="register-card">
 
-            <!-- LOGO -->
             <img src="{{ asset('img/logo.png') }}" class="logo" alt="Logo Cangkulin">
 
             <h2>Register</h2>
             <p class="subtitle">Buat akun admin untuk mengakses sistem Cangkullin.</p>
 
-            {{-- pesan sukses (misal diarahkan dari controller) --}}
             @if(session('success'))
                 <div class="success-message">{{ session('success') }}</div>
             @endif
 
-            {{-- pesan error kode / validasi umum --}}
             @if(session('error'))
                 <div class="error-message">{{ session('error') }}</div>
             @endif
 
-            {{-- error validasi Laravel (misal field wajib kosong, email salah, dsb) --}}
             @if($errors->any())
                 <div class="error-message">
                     Terjadi kesalahan pada input. Periksa kembali data yang kamu isi.
@@ -176,7 +168,6 @@
                 <label>Password</label>
                 <input type="password" name="password" required>
 
-                {{-- KODE DAFTAR ADMIN – biar bukan sembarang orang bisa daftar --}}
                 <label>Kode Daftar Admin</label>
                 <input type="password" name="kode_daftar" required>
 

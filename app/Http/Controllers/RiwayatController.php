@@ -9,11 +9,9 @@ class RiwayatController extends Controller
 {
     public function index(Request $request)
     {
-        // Ambil input filter
         $filterKelompok = $request->get('kelompok');
         $filterTanggal = $request->get('tanggal');
 
-        // Query dasar
         $query = DB::table('detail_peminjaman')
             ->join('peminjaman', 'detail_peminjaman.id_pinjam', '=', 'peminjaman.id_pinjam')
             ->join('alat_pertanian', 'detail_peminjaman.id_alat', '=', 'alat_pertanian.id_alat')
@@ -29,12 +27,10 @@ class RiwayatController extends Controller
             )
             ->orderBy('peminjaman.tanggal_pinjam', 'desc');
 
-        // Filter kelompok tani
         if (!empty($filterKelompok)) {
             $query->where('kelompok_tani.nama_kelompoktani', 'like', "%$filterKelompok%");
         }
 
-        // Filter tanggal pinjam
         if (!empty($filterTanggal)) {
             $query->whereDate('peminjaman.tanggal_pinjam', $filterTanggal);
         }

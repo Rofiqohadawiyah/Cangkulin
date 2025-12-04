@@ -12,7 +12,6 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* === WRAPPER UTAMA === */
     .page-wrapper {
         max-width: 1200px;
         margin: 40px auto;
@@ -22,7 +21,6 @@
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
 
-    /* === HEADER === */
     .page-header {
         display: flex;
         justify-content: space-between;
@@ -45,7 +43,6 @@
         margin-top: 4px;
     }
 
-    /* === FORM FILTER === */
     .filter-form {
         display: flex;
         gap: 10px;
@@ -83,7 +80,6 @@
         background: #256427;
     }
 
-    /* === TABEL === */
     table {
         width: 100%;
         border-collapse: collapse;
@@ -113,7 +109,6 @@
         transition: 0.2s;
     }
 
-    /* === STATUS BADGE === */
     .status {
         display: inline-block;
         padding: 6px 12px;
@@ -123,11 +118,10 @@
         color: white;
     }
 
-    .status-1 { background: #43a047; } /* Dipinjam */
-    .status-2 { background: #fbc02d; color: #3e2723; } /* Perlu Pengingat */
-    .status-3 { background: #9e9e9e; } /* Dikembalikan */
+    .status-1 { background: #43a047; }
+    .status-2 { background: #fbc02d; color: #3e2723; }
+    .status-3 { background: #9e9e9e; }
 
-    /* === TOMBOL AKSI === */
     .btn-aksi {
         border: none;
         border-radius: 8px;
@@ -170,14 +164,12 @@
     }
 </style>
 
-    {{-- HEADER --}}
     <div class="page-header">
         <div>
             <h2 class="page-title">Data Pengembalian</h2>
             <p class="page-subtitle">Daftar alat yang masih dalam status peminjaman dan perlu pengingat.</p>
         </div>
 
-        {{-- FILTER & SEARCH --}}
         <form action="{{ route('pengembalian.index') }}" method="GET" class="filter-form">
             <input type="text" name="search" value="{{ request('search') }}" placeholder="Cari nama alat / kelompok...">
             <select name="filter_status">
@@ -189,14 +181,12 @@
         </form>
     </div>
 
-    {{-- ALERT SUCCESS --}}
     @if(session('success'))
         <div style="background:#e8f5e9; color:#2e7d32; padding:8px 12px; border-radius:6px; margin-bottom:15px; font-size:14px;">
             {{ session('success') }}
         </div>
     @endif
 
-    {{-- TABEL UTAMA --}}
     <div style="overflow-x:auto;">
         <table>
             <thead>

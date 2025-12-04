@@ -27,7 +27,6 @@
             padding:14px 40px;
             display:flex;
             gap:10px;
-            /* justify-content:space-between; */
             align-items:center;
             position:sticky;
             top:0;
@@ -250,7 +249,6 @@
 </head>
 <body>
 
-    {{-- NAVBAR PUBLIC --}}
     <div class="navbar">
         <img src="{{ asset('img/logo.png') }}" alt="Logo" class="logo-img">
         <div class="logo">
@@ -270,7 +268,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // SLIDER
             const slides = document.querySelectorAll('.hero-slide');
             let current = 0;
 

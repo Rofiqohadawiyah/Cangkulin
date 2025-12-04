@@ -20,10 +20,7 @@ class LaporanController extends Controller
 
         $data = $query->orderBy('tanggal_pinjam', 'desc')->get();
 
-        // ================================
-        // GRAFIK ALAT PALING BANYAK DIPINJAM
-        // ================================
-        $group = []; // [id_alat => ['nama' => ..., 'total' => ...]]
+        $group = [];
 
         foreach ($data as $pinjam) {
             foreach ($pinjam->detailPeminjaman as $detail) {
@@ -36,12 +33,10 @@ class LaporanController extends Controller
                     ];
                 }
 
-                // kalau mau berdasarkan jumlah pinjam, ganti 1 jadi $detail->jumlah / qty
                 $group[$alatId]['total']++;
             }
         }
 
-        // siapkan data untuk Chart.js
         $labels = [];
         $values = [];
 

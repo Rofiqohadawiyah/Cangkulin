@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\AlatPertanian; // sesuaikan dengan modelmu
+use App\Models\AlatPertanian;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,7 +14,7 @@ class HomeController extends Controller
 
     public function dashboard()
     {
-        $alat = AlatPertanian::all();      // query yang sama
-        return view('dashboard', compact('alat')); // kirim ke dashboard.blade.php
+        $alat = AlatPertanian::all();
+        return view('dashboard', compact('alat'));
     }
 }

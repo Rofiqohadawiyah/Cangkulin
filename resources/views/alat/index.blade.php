@@ -3,7 +3,6 @@
 @section('content')
 
 <style>
-    /* === BACKGROUND === */
     body {
         margin: 0;
         padding: 0;
@@ -14,7 +13,6 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* === CARD BESAR (wrapper utama) === */
     .page-wrapper {
         max-width: 1200px;
         margin: 40px auto;
@@ -24,7 +22,6 @@
         box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
 
-    /* === HEADER (judul & tombol tambah) === */
     .page-header {
         display: flex;
         justify-content: space-between;
@@ -45,7 +42,6 @@
         margin-top: 4px;
     }
 
-    /* === TOMBOL TAMBAH === */
     .btn-add {
         background: #2e7d32;
         color: white;
@@ -61,7 +57,6 @@
         background: #256427;
     }
 
-    /* === GRID KARTU ALAT === */
     .alat-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -129,7 +124,6 @@
         color: #b71c1c;
     }
 
-    /* === TOMBOL EDIT / HAPUS === */
     .alat-actions {
         display: flex;
         justify-content: center;
@@ -164,7 +158,6 @@
         background: #c62828;
     }
 
-    /* === RESPONSIVE === */
     @media (max-width: 992px) {
         .page-wrapper {
             margin: 20px;
@@ -185,14 +178,12 @@
         <a href="{{ route('alat.create') }}" class="btn-add">+ Tambah Alat</a>
     </div>
 
-    {{-- ALERT SUCCESS --}}
     @if(session('success'))
         <div style="background:#e8f5e9; color:#2e7d32; padding:8px 12px; border-radius:6px; margin-bottom:15px; font-size:14px;">
             {{ session('success') }}
         </div>
     @endif
 
-    {{-- GRID KARTU ALAT --}}
     @if($alat->count())
         <div class="alat-grid">
             @foreach($alat as $item)

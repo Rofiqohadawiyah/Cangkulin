@@ -79,6 +79,6 @@ class AuthController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('home'); // langsung ke halaman beranda user
+        return redirect()->route('home');
     }
 }

@@ -5,7 +5,6 @@
 @section('content')
 
 <style>
-    /* === LATAR BELAKANG DAN TEMA WARNA === */
     body {
         background: url('{{ asset('img/hero9.jpg') }}') no-repeat center center fixed;
         background-size: cover;
@@ -22,7 +21,6 @@
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
-    /* === HEADERR === */
     .admin-header {
         display: flex;
         justify-content: space-between;
@@ -42,7 +40,6 @@
         margin: 4px 0 0;
     }
 
-    /* === TABEL === */
     .admin-table {
         width: 100%;
         border-collapse: collapse;
@@ -73,7 +70,6 @@
         transition: 0.2s;
     }
 
-    /* === BARIS KOSONG === */
     .admin-table-empty {
         text-align: center;
         color: #78909c;
@@ -81,7 +77,6 @@
         font-size: 14px;
     }
 
-    /* === CARD BAYANGAN & TOMBOL === */
     .btn-green {
         padding: 8px 16px;
         border-radius: 999px;
@@ -96,7 +91,6 @@
         background: #256427;
     }
 
-    /* === FOOTER === */
     footer {
         text-align: center;
         color: #607d8b;
@@ -112,7 +106,6 @@
             <p>Daftar admin yang terdaftar dalam sistem Cangkullin.</p>
         </div>
 
-        {{-- Tombol nambah admin kalau kamu butuh --}}
         {{-- <a href="{{ route('admin.create') }}" class="btn-green">+ Tambah Admin</a> --}}
     </div>
 

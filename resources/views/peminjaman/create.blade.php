@@ -9,7 +9,6 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* === WRAPPER === */
     .card-custom {
         background: #f1f8f4;
         padding: 32px;
@@ -27,16 +26,14 @@
         text-align: center;
     }
 
-    /* === LABEL === */
     label {
         font-weight: 700;
-        color: #4caf50; /* hijau muda elegan */
+        color: #4caf50;
         font-size: 14px;
         display: block;
         margin-bottom: 6px;
     }
 
-    /* === INPUT === */
     .input {
         width: 100%;
         padding: 10px 12px;
@@ -58,7 +55,6 @@
         margin-bottom: 18px;
     }
 
-    /* === PILIH ALAT === */
     .alat-wrapper {
         margin-top: 28px;
     }
@@ -71,15 +67,13 @@
         display: block;
     }
 
-    /* === GRID CARD === */
     .grid-alat {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* pas 5 per baris */
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
         gap: 16px;
         justify-content: center;
     }
 
-    /* === CARD ALAT === */
     .alat-card {
         background: #f8fff8;
         border: 1px solid #d6e8d6;
@@ -108,14 +102,13 @@
         transform: translateY(-4px);
     }
 
-    /* === GAMBAR === */
     .alat-img {
         width: 100%;
-        height: 120px;              /* proporsional, seragam */
-        object-fit: contain;        /* biar ga kepotong */
+        height: 120px;
+        object-fit: contain;
         border-radius: 8px;
-        background: #f9fff9;        /* hijau muda lembut */
-        border: 1px solid #dceee0;  /* frame halus */
+        background: #f9fff9;
+        border: 1px solid #dceee0;
         padding: 6px;
         display: flex;
         align-items: center;
@@ -123,7 +116,6 @@
         margin-bottom: 6px;
     }
 
-    /* === TEKS DALAM CARD === */
     .alat-name {
         font-size: 13px;
         font-weight: 700;
@@ -138,7 +130,6 @@
         margin-bottom: 5px;
     }
 
-    /* === BADGE STATUS === */
     .status {
         display: inline-block;
         padding: 3px 10px;
@@ -158,7 +149,6 @@
         color: #b71c1c;
     }
 
-    /* === INPUT JUMLAH === */
     .jumlah-input {
         width: 80%;
         padding: 6px;
@@ -170,7 +160,6 @@
         display: none;
     }
 
-    /* === BUTTON === */
     .btn-save {
         background: linear-gradient(180deg, #2e7d32, #1b5e20);
         color: white;
@@ -189,7 +178,6 @@
         transform: translateY(-2px);
     }
 
-    /* === RESPONSIVE === */
     @media (max-width: 992px) {
         .grid-alat {
             grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
@@ -221,7 +209,6 @@
     <form action="{{ route('peminjaman.store') }}" method="POST">
         @csrf
 
-        {{-- FORM UTAMA --}}
         <div class="form-section">
             <label>Kelompok Tani</label>
             <select name="id_kelompoktani" class="input" required>
@@ -253,7 +240,6 @@
             </select>
         </div>
 
-        {{-- PILIH ALAT --}}
         <div class="alat-wrapper">
             <label class="alat-title">Pilih Alat Pertanian</label>
             <div class="grid-alat">
@@ -285,13 +271,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     cards.forEach(card => {
         const id = card.getAttribute('data-id');
-        const checkbox = card.querySelector('.alat-checkbox'); // 🔹 Ambil checkbox
+        const checkbox = card.querySelector('.alat-checkbox');
         const jumlahInput = document.querySelector('.jumlah-' + id);
 
         card.addEventListener('click', function (e) {
             if (e.target.classList.contains('jumlah-input')) return;
 
-            // 🔹 Toggle checkbox agar hanya alat yang diklik aktif
             checkbox.checked = !checkbox.checked;
 
             if (checkbox.checked) {

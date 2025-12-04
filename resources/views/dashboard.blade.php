@@ -10,7 +10,6 @@
         background-attachment: fixed;
     }
 
-    /* ========= HERO FULLSCREEN ========= */
     .hero-full {
         position: relative;
         width: 100vw;
@@ -20,7 +19,7 @@
         display: flex;
         align-items: center;
         justify-content: flex-start;
-        padding: 0 6%;                 /* <-- jarak kiri kanan 6% */
+        padding: 0 6%;
         box-sizing: border-box;
         overflow: hidden;
         background: url("{{ asset('img/hero-dashboard.png') }}") center/cover no-repeat;
@@ -118,14 +117,13 @@
         color: #78909c;
     }
 
-    /* ========== STRIP ALAT FULLSCREEN ========= */
     .alat-strip-full {
         width: 100vw;
         margin-left: calc(50% - 50vw);
         margin-right: calc(50% - 50vw);
         background: #42a547;
         color: #ffffff;
-        padding: 40px 6% 36px;     /* <-- match fitur Cangkulin */
+        padding: 40px 6% 36px;
         box-sizing: border-box;
     }
 
@@ -225,13 +223,12 @@
         color: #c62828;
     }
 
-    /* ========== SUMMARY FULL ========= */
     .summary-full {
         width: 100vw;
         margin-left: calc(50% - 50vw);
         margin-right: calc(50% - 50vw);
         background: rgba(245, 253, 245, 0.20);
-        padding: 28px 6% 24px;      /* <-- kiri kanan 6% */
+        padding: 28px 6% 24px;
         box-sizing: border-box;
     }
 
@@ -387,13 +384,12 @@
         transition: .2s;
     }
 
-    /* ========== MODULE STRIP (FITUR CANGKULIN) ========= */
     .module-strip-full {
         width:100vw;
         margin-left:calc(50% - 50vw);
         margin-right:calc(50% - 50vw);
         background:#9bda9e;
-        padding:40px 6% 36px;      /* <-- referensi jarak kiri kanan */
+        padding:40px 6% 36px;
         box-sizing:border-box;
         position:relative;
         z-index:0;
@@ -498,13 +494,12 @@
         color: #9e9e9e;
     }
 
-    /* ========== HIGHLIGHT GRID ========= */
     .highlight-full {
         width: 100vw;
         margin-left: calc(50% - 50vw);
         margin-right: calc(50% - 50vw);
         background: rgba(245, 253, 245, 0.90); 
-        padding: 40px 6% 60px;       /* <-- kiri kanan 6% */
+        padding: 40px 6% 60px;
         box-sizing: border-box;
     }
 
@@ -558,8 +553,6 @@
     }
 
 </style>
-
-{{-- ===== HERO FULLSCREEN ===== --}}
 <section class="hero-full">
     <div class="hero-left">
         <div class="hero-kicker">Cangkulin Admin Panel</div>
@@ -584,7 +577,6 @@
     </div>
 </section>
 
-{{-- ===== STRIP ALAT FULLSCREEN ===== --}}
 <section class="alat-strip-full">
     <div class="alat-strip-inner">
         <div>
@@ -637,7 +629,6 @@
     </div>
 </section>
 
-{{-- ===== SUMMARY SECTION ===== --}}
 <section class="summary-full">
     <div class="summary-inner">
         <section class="summary-section">
@@ -703,7 +694,6 @@
     </div>
 </section>
 
-{{-- ===== FITUR DI CANGKULIN ===== --}}
 <section class="module-strip-full">
     <div class="module-inner">
         <div class="module-header">
@@ -714,7 +704,6 @@
         </div>
 
         <div class="module-scroll">
-            {{-- Admin --}}
             <a href="{{ route('admin') }}" class="module-card">
                 <span class="module-chip">Manajemen akun</span>
                 <div class="module-name">Admin</div>
@@ -724,7 +713,6 @@
                 <div class="module-footer">Menu navbar: <strong>Admin</strong></div>
             </a>
 
-            {{-- Kelompok Tani --}}
             <a href="{{ route('kelompok.index') }}" class="module-card">
                 <span class="module-chip">Data peminjam</span>
                 <div class="module-name">Kelompok Tani</div>
@@ -734,7 +722,6 @@
                 <div class="module-footer">Menu navbar: <strong>Kelompok Tani</strong></div>
             </a>
 
-            {{-- Alat Pertanian --}}
             <a href="{{ route('alat.index') }}" class="module-card">
                 <span class="module-chip">Stok alat</span>
                 <div class="module-name">Alat Pertanian</div>
@@ -744,7 +731,6 @@
                 <div class="module-footer">Menu navbar: <strong>Alat Pertanian</strong></div>
             </a>
 
-            {{-- Peminjaman --}}
             <a href="{{ route('peminjaman.index') }}" class="module-card">
                 <span class="module-chip">Rencana fitur</span>
                 <div class="module-name">Peminjaman</div>
@@ -754,7 +740,6 @@
                 <div class="module-footer">Menu navbar: <strong>Peminjaman</strong></div>
             </a>
 
-            {{-- Pengembalian --}}
             <a href="{{ route('pengembalian.index') }}" class="module-card">
                 <span class="module-chip">Rencana fitur</span>
                 <div class="module-name">Pengembalian</div>
@@ -764,7 +749,6 @@
                 <div class="module-footer">Menu navbar: <strong>Pengembalian</strong></div>
             </a>
 
-            {{-- Laporan (belum ada route) --}}
             <a href="#" class="module-card">
                 <span class="module-chip">Rekap data</span>
                 <div class="module-name">Laporan</div>
@@ -774,7 +758,6 @@
                 <div class="module-footer">Menu navbar: <strong>Laporan</strong></div>
             </a>
 
-            {{-- Riwayat (belum ada route) --}}
             <a href="#" class="module-card">
                 <span class="module-chip">Jejak aktivitas</span>
                 <div class="module-name">Riwayat</div>
@@ -787,7 +770,6 @@
     </div>
 </section>
 
-{{-- ===== HIGHLIGHT GAMBAR ===== --}}
 <section class="highlight-full">
     <div class="highlight-inner">
         <div class="highlight-grid">

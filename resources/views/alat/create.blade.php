@@ -11,7 +11,6 @@
         padding: 0;
     }
 
-    /* === CARD UTAMA === */
     .card-custom {
         background: #f1f8f4;
         padding: 32px;
@@ -63,7 +62,6 @@
         box-shadow: 0 0 5px rgba(67,160,71,0.35);
     }
 
-    /* === FILE INPUT (KEMBALI KE GAYA NATURAL) === */
     input[type="file"] {
         width: 100%;
         border: none;
@@ -77,7 +75,7 @@
     }
 
     input[type="file"]::-webkit-file-upload-button {
-        background: #e0e0e0; /* abu muda natural */
+        background: #e0e0e0;
         color: #333;
         border: 1px solid #ccc;
         padding: 8px 14px;
@@ -90,7 +88,6 @@
         background: #d6d6d6;
     }
 
-    /* === PREVIEW GAMBAR === */
     .preview {
         text-align: center;
         margin-top: 10px;
@@ -105,7 +102,6 @@
         margin-top: 6px;
     }
 
-    /* === BUTTONS === */
     .btn {
         display: inline-block;
         padding: 10px 16px;
@@ -163,7 +159,6 @@
     <h2>Tambah Alat Pertanian</h2>
     <p>Isi form berikut untuk menambahkan alat baru ke sistem.</p>
 
-    {{-- ALERT VALIDASI --}}
     @if($errors->any())
         <div class="alert">
             @foreach($errors->all() as $error)
@@ -175,26 +170,22 @@
     <form method="POST" action="{{ route('alat.store') }}" enctype="multipart/form-data">
         @csrf
 
-        {{-- NAMA ALAT --}}
         <div>
             <label>Nama Alat</label>
             <input type="text" name="nama_alat" value="{{ old('nama_alat') }}" required>
         </div>
 
-        {{-- JUMLAH --}}
         <div>
             <label>Jumlah</label>
             <input type="number" name="jumlah" value="{{ old('jumlah', 0) }}" min="0" required>
         </div>
 
-        {{-- FOTO ALAT --}}
         <div>
             <label>Foto Alat (wajib)</label>
             <input type="file" name="gambar_alat" accept="image/*" id="gambarInput" required>
             <div class="preview" id="previewContainer"></div>
         </div>
 
-        {{-- BUTTONS --}}
         <div class="btn-row">
             <button type="submit" class="btn btn-green">Simpan</button>
             <a href="{{ route('alat.index') }}" class="btn btn-red">Batal</a>
@@ -202,11 +193,10 @@
     </form>
 </div>
 
-{{-- SCRIPT PREVIEW GAMBAR --}}
 <script>
 document.getElementById('gambarInput').addEventListener('change', function (event) {
     const previewContainer = document.getElementById('previewContainer');
-    previewContainer.innerHTML = ''; // Hapus preview lama
+    previewContainer.innerHTML = '';
 
     const file = event.target.files[0];
     if (file) {

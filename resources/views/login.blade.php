@@ -2,12 +2,11 @@
 
 @section('title', 'Login')
 
-{{-- CSS KHUSUS HALAMAN LOGIN --}}
 @section('head')
 <style>
     .auth-bg {
         position: relative;
-        min-height: calc(100vh - 60px); /* tinggi layar dikurangi tinggi navbar kira-kira */
+        min-height: calc(100vh - 60px);
         background: url('{{ asset("img/hero4.png") }}') center/cover no-repeat;
     }
 
@@ -17,7 +16,7 @@
         inset: 0;
         background: rgba(0,0,0,0.45);
         backdrop-filter: blur(1px);
-        z-index: 0; /* di belakang card */
+        z-index: 0;
     }
 
     .auth-wrapper {
@@ -119,7 +118,6 @@
 </style>
 @endsection
 
-{{-- KONTEN LOGIN --}}
 @section('content')
 <div class="auth-bg">
     <div class="auth-wrapper">

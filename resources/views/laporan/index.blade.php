@@ -3,7 +3,6 @@
 @section('content')
 
 <style>
-    /* BACKGROUND SAMA STYLE GLOBAL */
     body {
         margin: 0;
         padding: 0;
@@ -13,7 +12,6 @@
         font-family: 'Poppins', sans-serif;
     }
 
-    /* WRAPPER CARD UTAMA */
     .laporan-bg {
         max-width: 1200px;
         margin: 40px auto;
@@ -23,7 +21,6 @@
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
     }
 
-    /* HEADER + FILTER (PERSIS MODEL RIWAYAT) */
     .header-row {
         display: flex;
         justify-content: space-between;
@@ -89,7 +86,6 @@
         color: #607d8b;
     }
 
-    /* CARD UNTUK GRAFIK */
     .chart-card {
         background: #ffffff;
         border-radius: 10px;
@@ -105,7 +101,6 @@
         margin-bottom: 14px;
     }
 
-    /* CONTAINER CHART (BIAR BISA SCROLL) */
     #chart-container {
         width: 100%;
         overflow-x: auto;
@@ -113,7 +108,7 @@
     }
 
     #chartPinjam {
-        min-width: 1000px; /* boleh disesuaikan kalau data makin banyak/dikit */
+        min-width: 1000px;
         height: 380px;
     }
 
@@ -136,8 +131,6 @@
 </style>
 
 <div class="laporan-bg">
-
-    {{-- HEADER + FILTER (KANAN, MIRIP RIWAYAT) --}}
     <div class="header-row">
         <div>
             <h2 class="laporan-title">Laporan Peminjaman</h2>
@@ -152,7 +145,6 @@
         </form>
     </div>
 
-    {{-- CARD GRAFIK --}}
     <div class="chart-card">
         <h4 class="chart-title">Grafik Alat yang Paling Banyak Dipinjam</h4>
 
@@ -166,18 +158,15 @@
 {{-- CHART.JS --}}
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-    // ==== LABEL DIPOTONG PER KATA (2 BARIS) ====
     const rawLabels = @json($labels);
 
     const wrappedLabels = rawLabels.map(label => {
         const words = label.split(" ");
 
         if (words.length === 1) {
-            // 1 kata tetap 1 baris
             return [label];
         }
 
-        // kata pertama di baris 1, sisanya digabung di baris 2
         return [
             words[0],
             words.slice(1).join(" ")
@@ -189,21 +178,20 @@
     new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: wrappedLabels, // <-- pakai label yang sudah di-wrap
+            labels: wrappedLabels, 
             datasets: [{
                 label: 'Jumlah Dipinjam',
                 data: @json($values),
-                backgroundColor: 'rgba(46, 125, 50, 0.5)',  // hijau transparan
-                borderColor: 'rgba(46, 125, 50, 1)',       // hijau solid
+                backgroundColor: 'rgba(46, 125, 50, 0.5)',
+                borderColor: 'rgba(46, 125, 50, 1)',
                 borderWidth: 1,
 
-                // ==== BATANG LEBIH KECIL / TIPIS ====
                 barPercentage: 0.8,
                 categoryPercentage: 0.8,
             }]
         },
         options: {
-            responsive: false,   // biar horizontal scroll jalan
+            responsive: false,
             scales: {
                 x: {
                     ticks: {

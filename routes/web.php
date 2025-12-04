@@ -13,7 +13,7 @@ use App\Http\Controllers\PengembalianController;
 use App\Http\Controllers\RiwayatController;
 use App\Http\Controllers\LaporanController;
 
-// HALAMAN UTAMA (PUBLIC) - tanpa middleware
+// HALAMAN UTAMA (PUBLIC)
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // LOGIN
@@ -26,15 +26,12 @@ Route::post('/register', [AuthController::class, 'register']);
 
 // DASHBOARD (ADMIN)
 Route::get('/dashboard', function () {
-    // semua alat
     $alat = AlatPertanian::all();
 
-    // hitung peminjaman dengan status "dipinjam"
     $jumlahSedangDipinjam = Peminjaman::whereHas('status', function ($q) {
-        $q->where('deskripsi', 'dipinjam');   // sesuai isi tabel status
+        $q->where('deskripsi', 'dipinjam');
     })->count();
 
-    // (opsional) tambahan kalau mau
     $jumlahPerluPengingat = Peminjaman::whereHas('status', function ($q) {
         $q->where('deskripsi', 'perlu pengingat');
     })->count();
@@ -76,7 +73,8 @@ Route::middleware('authSession')->group(function () {
     Route::post('/kelompok_tani/create', [KelompokTaniController::class, 'store'])->name('kelompok.store');
 
     Route::get('/kelompok_tani/edit/{id}', [KelompokTaniController::class, 'edit'])->name('kelompok.edit');
-    Route::post('/kelompok_tani/edit/{id}', [KelompokTaniController::class, 'update'])->name('kelompok.update');
+    Route::match(['post', 'put'], '/kelompok_tani/edit/{id}', [KelompokTaniController::class, 'update'])
+    ->name('kelompok.update');
 
     Route::get('/kelompok_tani/delete/{id}', [KelompokTaniController::class, 'delete'])->name('kelompok.delete');
 });

@@ -4,10 +4,8 @@
 
 @section('content')
 
-    {{-- HERO SLIDER (SATU-SATUNYA HERO) --}}
     <section class="hero">
 
-        {{-- slide background, pastikan file gambarnya ada di public/img --}}
         <div class="hero-slide" style="background-image:url('/img/hero1.jpg')"></div>
         <div class="hero-slide" style="background-image:url('/img/hero2.jpg')"></div>
         <div class="hero-slide" style="background-image:url('/img/hero3.jpg')"></div>
@@ -25,7 +23,6 @@
 
     </section>
 
-    {{-- GALERI PEMINJAMAN --}}
     <section class="section fade-section" id="galeri">
         <h2>Galeri Peminjaman</h2>
         <p class="section-sub">
@@ -98,7 +95,6 @@
         </div>
     </section>
 
-    {{-- FITUR --}}
     <section class="section fade-section">
         <h2>Kenapa Menggunakan Cangkullin?</h2>
         <p class="section-sub">
@@ -123,7 +119,6 @@
         </div>
     </section>
 
-    {{-- DAFTAR ALAT --}}
     <section class="section fade-section" id="alat">
         <h2>Daftar Alat Pertanian</h2>
         <p class="section-sub">Informasi ketersediaan alat diperbarui oleh admin.</p>
@@ -131,20 +126,17 @@
         <div class="alat-grid">
             @forelse($alat as $item)
                 <div class="alat-card">
-                    {{-- GAMBAR --}}
+
                     @if(!empty($item->gambar_alat))
                         <img src="{{ asset('uploads/alat/'.$item->gambar_alat) }}" alt="{{ $item->nama_alat }}">
                     @else
                         <img src="{{ asset('img/default-alat.jpg') }}" alt="Alat Pertanian">
                     @endif
 
-                    {{-- NAMA --}}
                     <h3>{{ $item->nama_alat }}</h3>
 
-                    {{-- JUMLAH --}}
                     <p>Jumlah tersedia: {{ $item->jumlah }}</p>
 
-                    {{-- STATUS --}}
                     <span class="badge {{ $item->jumlah > 0 ? 'badge-green' : 'badge-red' }}">
                         {{ $item->jumlah > 0 ? 'Tersedia' : 'Habis' }}
                     </span>

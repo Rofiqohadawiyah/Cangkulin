@@ -35,7 +35,6 @@ class PeminjamanController extends Controller
 
     public function store(Request $request)
     {
-        // 🧩 VALIDASI DASAR
         $request->validate([
             'tanggal_pinjam'  => 'required|date',
             'tenggat_pinjam'  => 'nullable|date|after_or_equal:tanggal_pinjam',
@@ -47,7 +46,6 @@ class PeminjamanController extends Controller
             'id_alat.required' => 'Pilih minimal 1 alat untuk dipinjam.'
         ]);
 
-        // 🧠 Filter alat yang valid saja
         $idAlatDipilih = array_filter($request->id_alat ?? [], fn($id) => !empty($id));
 
         if (empty($idAlatDipilih)) {
@@ -56,7 +54,6 @@ class PeminjamanController extends Controller
 
         DB::beginTransaction();
         try {
-            // 🧱 Simpan ke tabel peminjaman
             $idPinjam = DB::table('peminjaman')->insertGetId([
                 'tanggal_pinjam'  => $request->tanggal_pinjam,
                 'tenggat_pinjam'  => $request->tenggat_pinjam,
@@ -67,7 +64,6 @@ class PeminjamanController extends Controller
                 'updated_at'      => now(),
             ]);
 
-            // 🧩 Simpan detail alat yang dipilih
             foreach ($idAlatDipilih as $idAlat) {
                 $jumlah = isset($request->jumlah[$idAlat]) ? max(1, (int)$request->jumlah[$idAlat]) : 1;
 
