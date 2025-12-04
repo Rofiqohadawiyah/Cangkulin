@@ -22,7 +22,7 @@
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
     }
 
-    /* === HEADER === */
+    /* === HEADERR === */
     .admin-header {
         display: flex;
         justify-content: space-between;
