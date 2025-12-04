@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\AlatPertanian;
+use App\Models\Peminjaman;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KelompokTaniController;
 use App\Http\Controllers\AdminController;
@@ -9,6 +10,8 @@ use App\Http\Controllers\HomeController; // ← baru
 use App\Http\Controllers\AlatPertanianController;
 use App\Http\Controllers\PeminjamanController;
 use App\Http\Controllers\PengembalianController;
+use App\Http\Controllers\RiwayatController;
+use App\Http\Controllers\LaporanController;
 
 // HALAMAN UTAMA (PUBLIC) - tanpa middleware
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -23,11 +26,34 @@ Route::post('/register', [AuthController::class, 'register']);
 
 // DASHBOARD (ADMIN)
 Route::get('/dashboard', function () {
-    $alat = AlatPertanian::all();   // <- ambil semua data alat dari database
+    // semua alat
+    $alat = AlatPertanian::all();
 
-    return view('dashboard', compact('alat')); // <- kirim ke blade
+    // hitung peminjaman dengan status "dipinjam"
+    $jumlahSedangDipinjam = Peminjaman::whereHas('status', function ($q) {
+        $q->where('deskripsi', 'dipinjam');   // sesuai isi tabel status
+    })->count();
+
+    // (opsional) tambahan kalau mau
+    $jumlahPerluPengingat = Peminjaman::whereHas('status', function ($q) {
+        $q->where('deskripsi', 'perlu pengingat');
+    })->count();
+
+    $jumlahDikembalikan = Peminjaman::whereHas('status', function ($q) {
+        $q->where('deskripsi', 'dikembalikan');
+    })->count();
+
+    return view('dashboard', compact(
+        'alat',
+        'jumlahSedangDipinjam',
+        'jumlahPerluPengingat',
+        'jumlahDikembalikan'
+    ));
 })->middleware('authSession')->name('dashboard');
 
+//Riwayat
+Route::get('/riwayat', [App\Http\Controllers\RiwayatController::class, 'index'])
+    ->name('riwayat.index');
 
 // ADMIN
 Route::middleware('authSession')->group(function () {
@@ -36,7 +62,8 @@ Route::middleware('authSession')->group(function () {
     Route::get('/alat/create', [AlatPertanianController::class, 'create'])->name('alat.create');
     Route::post('/alat', [AlatPertanianController::class, 'store'])->name('alat.store');
     Route::get('/alat/{id}/edit', [AlatPertanianController::class, 'edit'])->name('alat.edit');
-    Route::post('/alat/{id}/edit', [AlatPertanianController::class, 'update'])->name('alat.update');
+    Route::match(['post', 'put'], '/alat/{id}/edit', [AlatPertanianController::class, 'update'])
+    ->name('alat.update');
     Route::get('/alat/{id}/delete', [AlatPertanianController::class, 'destroy'])->name('alat.delete');
 });
 
@@ -73,6 +100,9 @@ Route::put('/pengembalian/{id}/update-status', [PengembalianController::class, '
   Route::put('/pengembalian/{id}/perlu-pengingat', [PengembalianController::class, 'perluPengingat'])
         ->name('pengembalian.perluPengingat');
 });
+
+// Laporan
+Route::get('/laporan', [LaporanController::class, 'index'])->name('laporan.index');
 
 // LOGOUT
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');

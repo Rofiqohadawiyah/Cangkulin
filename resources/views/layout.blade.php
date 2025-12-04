@@ -133,8 +133,8 @@
             <a href="{{ route('alat.index') }}">Alat Pertanian</a>
             <a href="{{ route('peminjaman.index') }}">Peminjaman</a>
             <a href="{{ route('pengembalian.index')}}">Pengembalian</a>
-            <a href="#">Laporan</a>
-            <a href="#">Riwayat</a>
+            <a href="{{ route('laporan.index') }}">Laporan</a>
+            <a href="{{ route('riwayat.index') }}">Riwayat</a>
             <a href="{{ route('logout') }}" class="btn-red">Logout</a>
         </div>
     </div>

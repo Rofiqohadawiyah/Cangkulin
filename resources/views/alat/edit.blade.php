@@ -155,7 +155,6 @@
 
     <form method="POST" action="{{ route('alat.update', $alat->id_alat) }}" enctype="multipart/form-data">
         @csrf
-        @method('PUT')
 
         <label>Nama Alat</label>
         <input type="text" name="nama_alat" value="{{ old('nama_alat', $alat->nama_alat) }}" required>
