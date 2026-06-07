@@ -16,8 +16,19 @@ class PengembalianController extends Controller
                     ->doesntHave('pengembalian');
 
         if ($request->has('search') && $request->search != '') {
-            $query->whereHas('alat', function ($q) use ($request) {
-                $q->where('nama_alat', 'like', '%'.$request->search.'%');
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('alat', function ($sub) use ($search) {
+                    $sub->where('nama_alat', 'like', '%'.$search.'%');
+                })->orWhereHas('peminjaman.kelompokTani', function ($sub) use ($search) {
+                    $sub->where('nama_kelompoktani', 'like', '%'.$search.'%');
+                });
+            });
+        }
+
+        if ($request->has('filter_status') && $request->filter_status != '') {
+            $query->whereHas('peminjaman', function ($q) use ($request) {
+                $q->where('id_status', $request->filter_status);
             });
         }
 

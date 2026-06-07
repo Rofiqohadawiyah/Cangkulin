@@ -33,7 +33,7 @@ class LaporanController extends Controller
                     ];
                 }
 
-                $group[$alatId]['total']++;
+                $group[$alatId]['total'] += $detail->jumlah;
             }
         }
 

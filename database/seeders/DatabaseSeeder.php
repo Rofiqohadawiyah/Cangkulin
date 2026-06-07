@@ -21,5 +21,11 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        \DB::table('status')->insertOrIgnore([
+            ['id_status' => 1, 'deskripsi' => 'dipinjam'],
+            ['id_status' => 2, 'deskripsi' => 'perlu pengingat'],
+            ['id_status' => 3, 'deskripsi' => 'dikembalikan'],
+        ]);
     }
 }
