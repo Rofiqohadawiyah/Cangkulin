@@ -2,21 +2,23 @@ FROM php:8.3-cli
 
 WORKDIR /app
 
-# Install dependency sistem
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libzip-dev \
-    libsqlite3-dev \
-    && docker-php-ext-install pdo pdo_sqlite
+    libsqlite3-dev
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_sqlite
 
 # Install Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
-# Copy source code
+# Copy project
 COPY . .
 
-# Install dependency Laravel
+# Install Laravel dependencies
 RUN composer install --no-dev --optimize-autoloader
 
 EXPOSE 8000
